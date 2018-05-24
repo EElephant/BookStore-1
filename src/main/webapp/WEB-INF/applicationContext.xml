@@ -6,33 +6,84 @@
 
     <context:component-scan base-package="top.yimiaohome.shiro"/>
 
+    <!--
+        shiro缓存管理器
+    -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
     </bean>
 
+
+    <!--
+        shiro提供的加密器，加密方法为md5，加密次数1
+    -->
+    <bean id="matcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="MD5"/>
+        <property name="hashIterations" value="1"/>
+    </bean>
+
+    <!--
+        自定义Realm
+        参数为设置加密器
+    -->
+    <!--
+
+    <bean id="customRealm" class="top.yimiaohome.shiro.CustomRealm">
+        <property name="credentialsMatcher" ref="matcher"/>
+    </bean>
+    -->
     <bean id="customRealm" class="top.yimiaohome.shiro.CustomRealm"/>
 
+    <!--
+        shiro的安全管理器
+    -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="cacheManager" ref="cahceManager"/>
+        <property name="cacheManager" ref="cacheManager"/>
         <property name="realm" ref="customRealm"/>
     </bean>
 
+    <!--
+        shiro的生命周期管理
+    -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
+    <!--
+        DefaultAdvisorAutoProxyCreator搜索容器中的 advisor,并为每个bean创建代理
+    -->
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+
+    <!--
+        shiro spring aop
+    -->
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
 
+    <!--
+        shiro 过滤器
+
+        属性filterChainDefinitions为资源过滤链，管理资源的访问权限
+        从上到下匹配，匹配到立即返回
+        anon——匿名
+        authc——需认证
+        authc,roles[admin]——需认证且身份为admin
+        authc，perms[user:edit]——需认证，且需拥有user:edit权限
+        authcBase——需httpBasic认证
+        ssl——需https协议访问
+
+    -->
+
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-
         <property name="loginUrl" value="/login.jsp"/>
         <property name="successUrl" value="http://baidu.com"/>
         <property name="unauthorizedUrl" value="//google.com"/>
 
         <property name="filterChainDefinitions">
             <value>
+                /login.jsp=anon
+                /login=anon
+                /logout=logout
                 /**=anon
             </value>
         </property>

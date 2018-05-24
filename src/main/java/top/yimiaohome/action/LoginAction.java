@@ -36,6 +36,8 @@ public class LoginAction extends ActionSupport {
                 return "input";
             }
         }
+// 退出登录，测试时用。正式版本删除该行代码
+        currentUser.logout();
 
         return SUCCESS;
     }

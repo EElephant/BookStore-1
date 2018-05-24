@@ -2,8 +2,6 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<!-- shiro拦截器 -->
- <!--DelegatingFilterProxy会自动从spring容器中找出shiroFilter -->
 <web-app>
 
   <display-name>Archetype Created Web Application</display-name>
@@ -11,17 +9,11 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:WEB-INF/applicationContext-shiro.xml</param-value>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
-    <filter>
-        <filter-name>struts2</filter-name>
-        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
-    </filter>
+    <!-- shiro拦截器  shiro 拦截器必须在struts拦截器之前才能生效-->
+    <!--DelegatingFilterProxy会自动从spring容器中找出shiroFilter -->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -39,11 +31,10 @@
 
     </filter>
 
-
-    <filter-mapping>
+    <filter>
         <filter-name>struts2</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
 
 
     <!-- shiro 拦截器映射路径-->
@@ -53,8 +44,15 @@
   </filter-mapping>
 
 
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+
     <listener>
-        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
 </web-app>

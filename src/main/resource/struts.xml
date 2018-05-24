@@ -7,9 +7,8 @@
     <package name="BookStore" namespace="/" extends="struts-default">
 
         <action name="login" class="top.yimiaohome.action.LoginAction" method="login">
-            <result name="login">//baidu.com</result>
+            <result>/index.jsp</result>
         </action>
-
 
     </package>
 </struts>

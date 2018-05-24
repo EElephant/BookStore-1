@@ -4,15 +4,9 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import top.yimiaohome.dao.UserDao;
-import top.yimiaohome.entity.User;
-
-import javax.annotation.Resource;
 import java.io.Serializable;
 
 public class CustomRealm extends AuthorizingRealm implements Serializable {
-    @Resource
-    private UserDao userDao;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
