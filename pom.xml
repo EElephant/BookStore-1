@@ -38,12 +38,37 @@
       </exclusions>
     </dependency>
 
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-c3p0</artifactId>
+      <version>${hibernate.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>jboss-logging</artifactId>
+          <groupId>org.jboss.logging</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
 
       <dependency>
           <groupId>javax.persistence</groupId>
           <artifactId>persistence-api</artifactId>
           <version>1.0.2</version>
       </dependency>
+
+    <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+    </dependency>
 
     <dependency>
       <groupId>org.apache.struts</groupId>
@@ -78,6 +103,47 @@
     </dependency>
 
     <dependency>
+      <groupId>org.apache.struts</groupId>
+      <artifactId>struts2-spring-plugin</artifactId>
+      <version>2.5.16</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring-core</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-context</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-web</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-beans</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.jgeppert.struts2.bootstrap/struts2-bootstrap-plugin -->
+    <dependency>
+      <groupId>com.jgeppert.struts2.bootstrap</groupId>
+      <artifactId>struts2-bootstrap-plugin</artifactId>
+      <version>2.5.2</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>struts2-core</artifactId>
+          <groupId>org.apache.struts</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>freemarker</artifactId>
+          <groupId>org.freemarker</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>${mysql.version}</version>
@@ -89,15 +155,23 @@
       </exclusions>
     </dependency>
 
+    <!-- c3p0 连接池 -->
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5.2</version>
+      <scope>compile</scope>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
       <version>${spring.version}</version>
     </dependency>
 
@@ -155,66 +229,59 @@
       </exclusions>
     </dependency>
 
-      <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-api</artifactId>
-          <version>1.8.0-alpha2</version>
-      </dependency>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.8.0-alpha2</version>
+    </dependency>
 
-      <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-log4j12</artifactId>
-          <version>1.8.0-alpha2</version>
-      </dependency>
-
-      <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-simple</artifactId>
-          <version>1.8.0-alpha2</version>
-      </dependency>
-
-      <dependency>
-          <groupId>log4j</groupId>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.8.0-alpha2</version>
+      <exclusions>
+        <exclusion>
           <artifactId>log4j</artifactId>
-          <version>1.2.16</version>
-      </dependency>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>1.8.0-alpha2</version>
+    </dependency>
+
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.16</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.10.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.logging</groupId>
+      <artifactId>jboss-logging</artifactId>
+      <version>3.3.2.Final</version>
+    </dependency>
 
   </dependencies>
 
   <build>
-    <finalName>BookStore</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.7.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.20.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.modello</groupId>
+        <artifactId>modello-maven-plugin</artifactId>
+        <configuration>
+          <version>1.0.0</version>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>

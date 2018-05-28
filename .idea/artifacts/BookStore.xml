@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="unnamed">
-    <output-path>$PROJECT_DIR$/out/artifacts/unnamed</output-path>
+  <artifact type="exploded-war" name="BookStore">
+    <output-path>$PROJECT_DIR$/out/artifacts/BookStore</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -54,6 +54,16 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.8.0-alpha2" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.8.0-alpha2" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.16" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-c3p0:5.2.17.Final" />
+          <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
+          <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
+          <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.3.2.Final" />
+          <element id="library" level="project" name="Maven: org.apache.struts:struts2-spring-plugin:2.5.16" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.10.0" />
+          <element id="library" level="project" name="Maven: com.jgeppert.struts2.bootstrap:struts2-bootstrap-plugin:2.5.2" />
+          <element id="library" level="project" name="Maven: org.apache.struts:struts-annotations:1.0.6" />
+          <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.3.0" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="BookStore/web/Web" />

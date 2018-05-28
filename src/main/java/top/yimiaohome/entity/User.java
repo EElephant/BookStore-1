@@ -1,7 +1,10 @@
 package top.yimiaohome.entity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
+@Component
 @Entity
 @Table(name = "User")
 public class User {
