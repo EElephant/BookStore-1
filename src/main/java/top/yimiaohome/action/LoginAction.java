@@ -7,10 +7,11 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
-@Controller("LoginAction")
-@Scope("prototype")
+//
+//@Controller("LoginAction")
+//@Scope("prototype")
 public class LoginAction extends ActionSupport {
+
     private String username;
     private String password;
     public String login() throws Exception{
