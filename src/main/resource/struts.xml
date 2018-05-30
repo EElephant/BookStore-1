@@ -11,7 +11,7 @@
         </interceptors>
 
         <action name="login" class="top.yimiaohome.action.LoginAction" method="login">
-            <result>/index.jsp</result>
+            <result>/login.jsp</result>
         </action>
 
     </package>

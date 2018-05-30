@@ -1,0 +1,37 @@
+.bookcard{
+    border-color: #c12e2a;
+}
+.bookcard img{
+    display: block;
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
+}
+
+.bookcard .card-text{
+    font-size: 22px;
+    font-family: "等线 Light";
+}
+
+.type-nav,.login-nav {
+    position:fixed;
+    top:10%;
+    width: 13%;
+    right:initial;
+}
+@media screen and (max-width: 767px) {
+    .type-nav,.login-nav {
+        width: 90%;
+        display:block;
+        position: relative;
+        margin-bottom: 15px;
+    }
+}
+
+.nav>li>a:hover,.nav>li>a:focus {
+    background-color:#e4b9b9!important;
+}
+
+.dropdown-item:hover{
+    background-color:#e4b9b9!important;
+}

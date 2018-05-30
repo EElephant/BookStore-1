@@ -12,7 +12,14 @@
 <html>
 <head>
     <title>登录</title>
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+
+    <script
+            src="https://code.jquery.com/jquery-1.12.4.js"
+            integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+            crossorigin="anonymous"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
     <script src="/js/bootstrap.js"></script>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -24,7 +31,8 @@
 
 </head>
 <body>
-
+<%--导航栏--%>
+<s:include value="header.jsp"/>
 <div class="container" style="margin-top: 200px">
     <div class="row">
 
