@@ -23,8 +23,8 @@ import org.springframework.stereotype.Component;
 @ComponentScan
 @EnableAspectJAutoProxy
 public class LogInterceptor {
-    Logger logger = LogManager.getLogger(LogInterceptor.class);
 
+    Logger logger = LogManager.getLogger(this.getClass().getName());
 
     @Pointcut("execution(* top.yimiaohome..*.*(..))")
     public void recordLog(){}

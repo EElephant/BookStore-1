@@ -33,7 +33,7 @@
             <AppenderRef ref="File" />
         </Logger>
 
-        <root level="debug">
+        <root level="Info">
             <appender-ref ref="Console"/>
             <appender-ref ref="File"/>
         </root>

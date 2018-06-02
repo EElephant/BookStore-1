@@ -2,7 +2,7 @@
  * @Package top.yimiaohome.dao
  * @Description: TODO
  * @author yimiao
- * @date 2018/5/29 20:33
+ * @date 2018/5/31 17:20
  * @version V1.0
  */
 package top.yimiaohome.dao;
@@ -15,31 +15,40 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import top.yimiaohome.model.Role;
 import top.yimiaohome.model.User;
-
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
-public class UserDao {
+public class RoleDao {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     Logger logger = LogManager.getLogger(this.getClass().getName());
 
-    public User findUserByName(String username) {
-        User user = null;
+    @Transactional
+    public List<Role> getRoles(User user){
+        List<Role> roleList = null;
         try {
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
-            user = (User) session.createQuery("from User where username = :username").setParameter("username",username).list().get(0);
+            roleList=session.createQuery(
+                    "select r from Role r,UserRole i " +
+                            "where r.idRole = i.idRole " +
+                            "and i.idUser = :idUser")
+                    .setParameter("idUser",user.getIdUser())
+                    .getResultList();
             transaction.commit();
             session.close();
         }catch (HibernateException e){
             e.printStackTrace();
             logger.error(e.getMessage());
         }
-        return user;
+        return roleList;
+
     }
+
 }

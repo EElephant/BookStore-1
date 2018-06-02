@@ -9,15 +9,19 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
-        <sourceRoots />
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resource" />
+          <root url="file://$MODULE_DIR$/src/main/webapp" />
+        </sourceRoots>
       </configuration>
       <facet type="Struts2" name="Struts 2">
         <configuration>
           <fileset id="s2fileset" name="My Fileset " removed="false">
-            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.5.16/struts2-core-2.5.16.jar!/struts-default.xml</file>
             <file>file://$MODULE_DIR$/src/main/resource/struts.xml</file>
-            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-spring-plugin/2.5.16/struts2-spring-plugin-2.5.16.jar!/struts-plugin.xml</file>
+            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.5.16/struts2-core.jar!/struts-default.xml</file>
             <file>jar://$MAVEN_REPOSITORY$/com/jgeppert/struts2/bootstrap/struts2-bootstrap-plugin/2.5.2/struts2-bootstrap-plugin-2.5.2.jar!/struts-plugin.xml</file>
+            <file>jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-spring-plugin/2.5.16/struts2-spring-plugin-2.5.16.jar!/struts-plugin.xml</file>
           </fileset>
           <propertiesKeys disabled="false" />
         </configuration>
@@ -26,8 +30,9 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextShiro.xml</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextDao.xml</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextHibernate.xml</file>
         </fileset>
       </configuration>
     </facet>

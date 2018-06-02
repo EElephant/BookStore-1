@@ -7,17 +7,25 @@
  */
 package top.yimiaohome.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-//
-//@Controller("LoginAction")
-//@Scope("prototype")
+import org.springframework.beans.factory.annotation.Autowired;
+import top.yimiaohome.dao.UserDao;
+import top.yimiaohome.model.User;
+
+
 public class LoginAction extends ActionSupport {
+
+    @Autowired
+    UserDao userDao;
+
+    Logger logger = LogManager.getLogger(this.getClass().getName());
 
     private String username;
     private String password;
@@ -26,26 +34,30 @@ public class LoginAction extends ActionSupport {
         Session session = currentUser.getSession();
         if (!currentUser.isAuthenticated()){
             UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-            token.setRememberMe(true);
             try{
-            currentUser.login(token);
-            session.setAttribute("token",token.toString());
+                currentUser.login(token);
+                ActionContext.getContext().getSession().put("loginUser",userDao.findUserByName(String.valueOf(currentUser.getPrincipal())));
+                User user = (User) ActionContext.getContext().getSession().get("loginUser");
+
+                currentUser.checkRole("test");
+                currentUser.checkPermission("test");
             } catch (UnknownAccountException uae) {
-                System.out.println("用户名不存在: " + uae);
+                logger.info("用户名不存在: " + uae);
                 return "input";
             } catch (IncorrectCredentialsException ice) {
-                System.out.println("用户名存在,但密码和用户名不匹配: " + ice);
+                logger.info("用户名存在,但密码和用户名不匹配: " + ice);
                 return "input";
             } catch (LockedAccountException lae) {
-                System.out.println("用户被锁定: " + lae);
+                logger.info("用户被锁定: " + lae);
                 return "input";
             } catch (AuthenticationException ae) {
-                System.out.println("其他异常: " + ae);
+                logger.info("其他异常: " + ae);
                 return "input";
             }
         }
 // 退出登录，测试时用。正式版本删除该行代码
         currentUser.logout();
+        logger.error("退出登录");
 
         return SUCCESS;
     }
