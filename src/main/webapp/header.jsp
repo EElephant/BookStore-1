@@ -15,6 +15,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body>
 <div class="container-fluid">
@@ -23,23 +24,24 @@
     <div class="col-12 bg-danger">
         <ul class="col-12 nav pull-right">
             <li class="col-auto offset-2 mr-auto">
-                <a class="text-white" href="#">主页</a>
+                <a class="text-white" href="/index.jsp">主页</a>
             </li>
             <li class="col-auto">
-                <a class="text-white" href="#">登录</a>
+                <a class="text-white" href="/login.jsp">登录</a>
             </li>
             <li class="col-auto">
-                <a class="text-white" href="#">注册</a>
+                <a class="text-white" href="/register.jsp">注册</a>
             </li>
             <li class="dropdown col-auto">
-                <a class="dropdown-toggle text-white" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">客户</a>
+                <a class="dropdown-toggle text-white" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">我的账户</a>
                 <div class="dropdown-menu dropdown-menu-right bg-danger" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item text-white" href="#">Action</a>
-                    <a class="dropdown-item text-white" href="#">Another action</a>
-                    <a class="dropdown-item text-white" href="#">Something else here</a>
-                    <div class="dropdown-divider">
-                    </div> <a class="dropdown-item text-white" href="#">Separated link</a>
+                    <a class="dropdown-item text-white" href="/user/account.jsp">我的账号</a>
+                    <a class="dropdown-item text-white" href="/user/order.jsp">我的订单</a>
+                    <a class="dropdown-item text-white" href="/user/logout.jsp">退出登录</a>
                 </div>
+            </li>
+            <li class="cart">
+                <a href="/user/cart.jsp"></a>
             </li>
             <li class="col-2"></li>
         </ul>

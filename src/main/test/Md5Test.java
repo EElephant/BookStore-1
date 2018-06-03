@@ -15,8 +15,8 @@ public class Md5Test {
     public void test(){
 
         String hashAlgorithmName = "MD5";
-        String credentials = "admin";
-        String salt = "admin";
+        String credentials = "test";
+        String salt = "test";
         int hashIterations = 1;
         String str = String.valueOf(new SimpleHash(hashAlgorithmName, credentials, salt, hashIterations));
         System.out.println(str);

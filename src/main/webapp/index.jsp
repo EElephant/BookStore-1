@@ -111,10 +111,10 @@
                             <img class="d-block w-100" alt="Carousel Bootstrap First" src="https://img10.360buyimg.com/da/jfs/t19540/333/2393621913/123620/d724e86/5af3ee48N49bc9814.jpg!q80.webp"/>
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" alt="Carousel Bootstrap First" src="https://img10.360buyimg.com/da/jfs/t19540/333/2393621913/123620/d724e86/5af3ee48N49bc9814.jpg!q80.webp"/>
+                            <img class="d-block w-100" alt="Carousel Bootstrap First"/>
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" alt="Carousel Bootstrap First" src="https://img10.360buyimg.com/da/jfs/t19540/333/2393621913/123620/d724e86/5af3ee48N49bc9814.jpg!q80.webp"/>
+                            <img class="d-block w-100" alt="Carousel Bootstrap First"/>
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel-227451" data-slide="prev">
