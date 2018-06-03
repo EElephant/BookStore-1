@@ -30,7 +30,7 @@ public class RoleDao {
     Logger logger = LogManager.getLogger(this.getClass().getName());
 
     @Transactional
-    public List<Role> getRoles(User user){
+    public List<Role> getRolesByUser(User user){
         List<Role> roleList = null;
         try {
             Session session = sessionFactory.openSession();
@@ -44,11 +44,22 @@ public class RoleDao {
             transaction.commit();
             session.close();
         }catch (HibernateException e){
-            e.printStackTrace();
             logger.error(e.getMessage());
+            throw e;
         }
         return roleList;
+    }
 
+    public Role getRoleByRoleName(String roleName) throws HibernateException,NullPointerException{
+        Role role;
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        role = (Role) session.createQuery("from Role where roleName = :roleName")
+                .setParameter("roleName",roleName)
+                .getResultList().get(0);
+        transaction.commit();
+        session.close();
+        return role;
     }
 
 }

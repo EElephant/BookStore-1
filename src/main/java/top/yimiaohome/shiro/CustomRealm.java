@@ -53,7 +53,7 @@ public class CustomRealm extends AuthorizingRealm implements Serializable {
             Set<String> rolesNames = new HashSet<>();
             Set<String> permissionsNames = new HashSet<>();
             try {
-                List<Role> roleList = roleDao.getRoles(user);
+                List<Role> roleList = roleDao.getRolesByUser(user);
                 for (Role role : roleList) {
                     rolesNames.add(role.getRoleName());
                     logger.info("role :" + role.getRoleName());

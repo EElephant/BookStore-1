@@ -28,18 +28,23 @@ public class UserDao {
 
     Logger logger = LogManager.getLogger(this.getClass().getName());
 
-    public User findUserByName(String username) {
+    public User findUserByName(String username) throws HibernateException,NullPointerException {
         User user = null;
-        try {
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-            user = (User) session.createQuery("from User where username = :username").setParameter("username",username).list().get(0);
-            transaction.commit();
-            session.close();
-        }catch (HibernateException e){
-            e.printStackTrace();
-            logger.error(e.getMessage());
-        }
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        user = (User) session.createQuery("from User where username = :username").setParameter("username",username).list().get(0);
+        transaction.commit();
+        session.close();
         return user;
+    }
+
+    public int save(User user) throws HibernateException{
+        int result = 0;
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        result = (int) session.save(user);
+        transaction.commit();
+        session.close();
+        return result;
     }
 }

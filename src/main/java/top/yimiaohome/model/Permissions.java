@@ -7,9 +7,14 @@
  */
 package top.yimiaohome.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Component
+@Scope("prototype")
 @Entity
 @Table
 public class Permissions {

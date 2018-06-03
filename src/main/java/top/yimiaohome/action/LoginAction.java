@@ -16,14 +16,18 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import top.yimiaohome.common.Md5Util;
 import top.yimiaohome.dao.UserDao;
 import top.yimiaohome.model.User;
 
-
+@Component
 public class LoginAction extends ActionSupport {
 
     @Autowired
     UserDao userDao;
+    @Autowired
+    Md5Util md5Util;
 
     Logger logger = LogManager.getLogger(this.getClass().getName());
 
@@ -33,12 +37,17 @@ public class LoginAction extends ActionSupport {
         Subject currentUser = SecurityUtils.getSubject();
         Session session = currentUser.getSession();
         if (!currentUser.isAuthenticated()){
+            try {
+//          public String getMd5(String credentials,String salt) throws CodecException,UnknownAlgorithmException
+                password = md5Util.getMd5(password, username);
+            }catch (Exception e){
+                return ERROR;
+            }
             UsernamePasswordToken token = new UsernamePasswordToken(username,password);
             try{
                 currentUser.login(token);
                 ActionContext.getContext().getSession().put("loginUser",userDao.findUserByName(String.valueOf(currentUser.getPrincipal())));
                 User user = (User) ActionContext.getContext().getSession().get("loginUser");
-
                 currentUser.checkRole("test");
                 currentUser.checkPermission("test");
             } catch (UnknownAccountException uae) {

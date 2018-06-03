@@ -18,13 +18,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
     <link href="css/book.css" rel="stylesheet">
 
-    <script
-            src="https://code.jquery.com/jquery-1.12.4.js"
-            integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
-            crossorigin="anonymous"></script>
+    <script src="/js/jquery-1.12.4.js"/>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -97,31 +93,31 @@
             </div>
             <%--风车活动栏--%>
             <div class="row" style="margin-bottom: 10px">
-                <div class="col-md-12 carousel slide" id="carousel-227451">
+                <div class="col-md-12 carousel slide" id="carousel-1">
                     <ol class="carousel-indicators">
-                        <li data-slide-to="0" data-target="#carousel-227451" class="active">
+                        <li data-slide-to="0" data-target="#carousel-1" class="active">
                         </li>
-                        <li data-slide-to="1" data-target="#carousel-227451">
+                        <li data-slide-to="1" data-target="#carousel-1">
                         </li>
-                        <li data-slide-to="2" data-target="#carousel-227451">
+                        <li data-slide-to="2" data-target="#carousel-1">
                         </li>
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" alt="Carousel Bootstrap First" src="https://img10.360buyimg.com/da/jfs/t19540/333/2393621913/123620/d724e86/5af3ee48N49bc9814.jpg!q80.webp"/>
+                            <img class="d-block w-100 h-100" alt="活动" src="https://img10.360buyimg.com/da/jfs/t19540/333/2393621913/123620/d724e86/5af3ee48N49bc9814.jpg!q80.webp"/>
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" alt="Carousel Bootstrap First"/>
+                            <img class="d-block w-100 h-100" alt="活动" src="https://img10.360buyimg.com/da/jfs/t19540/333/2393621913/123620/d724e86/5af3ee48N49bc9814.jpg!q80.webp"/>
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" alt="Carousel Bootstrap First"/>
+                            <img class="d-block w-100 h-100" alt="活动" src="https://img10.360buyimg.com/da/jfs/t19540/333/2393621913/123620/d724e86/5af3ee48N49bc9814.jpg!q80.webp"/>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carousel-227451" data-slide="prev">
+                    <a class="carousel-control-prev" href="#carousel-1" data-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#carousel-227451" data-slide="next">
+                    <a class="carousel-control-next" href="#carousel-1" data-slide="next">
                         <span class="carousel-control-next-icon"></span>
                         <span class="sr-only">Next</span>
                     </a>
@@ -217,8 +213,6 @@
     </div>
 </div>
 <script src="js/jquery.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="/js/bootstrap-datepicker.js"></script>
-<script src="/js/bootstrap.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

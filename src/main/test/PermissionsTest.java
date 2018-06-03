@@ -56,7 +56,7 @@ public class PermissionsTest extends AbstractJUnit4SpringContextTests {
 
         User u = userDao.findUserByName("test");
         System.out.println(u.getPassword());
-        List<Role> l = roleDao.getRoles(u);
+        List<Role> l = roleDao.getRolesByUser(u);
         for (Role r : l ){
             System.out.println(r.getRoleName());
         }

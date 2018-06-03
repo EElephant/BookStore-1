@@ -42,11 +42,15 @@
     height: 40px;
     padding: 0;
     background-image: url("/icon/cart_white.png");
-    background-size: 40px 40px;
+    background-size: 35px 35px;
     background-repeat:no-repeat;
     background-position: center;
 }
 
 .cart>a:focus{
     background-image: url("/icon/cart_red.png") !important;
+}
+
+.carousel-inner{
+    height: 530px;
 }

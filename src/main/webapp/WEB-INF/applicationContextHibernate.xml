@@ -12,6 +12,8 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:component-scan base-package="top.yimiaohome.dao"/>
+    <context:component-scan base-package="top.yimiaohome.model"/>
+    <context:component-scan base-package="top.yimiaohome.service"/>
 
     <!--
         c3p0 数据源
