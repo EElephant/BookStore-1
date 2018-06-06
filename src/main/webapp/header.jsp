@@ -36,7 +36,7 @@
                 <div class="dropdown-menu dropdown-menu-right bg-danger" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item text-white" href="/user/account.jsp">我的账号</a>
                     <a class="dropdown-item text-white" href="/user/order.jsp">我的订单</a>
-                    <a class="dropdown-item text-white" href="/user/logout.jsp">退出登录</a>
+                    <a class="dropdown-item text-white" href="/logout.action">退出登录</a>
                 </div>
             </li>
             <li class="cart">

@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import top.yimiaohome.common.Md5Util;
 import top.yimiaohome.model.User;
 import top.yimiaohome.service.RegisterService;
 
@@ -20,9 +21,10 @@ public class RegisterAction extends ActionSupport {
 
     @Autowired
     RegisterService registerService;
-
     @Autowired
     private User user;
+    @Autowired
+    Md5Util md5Util;
 
     Logger logger = LogManager.getLogger(getClass().getName());
 
@@ -33,12 +35,14 @@ public class RegisterAction extends ActionSupport {
     private String kaptchaValicode;
 
     public String execute(){
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setEmail(email);
-        user.setPhone(phone);
 
-        try{
+        try {
+//          public String getMd5(String credentials,String salt) throws CodecException,UnknownAlgorithmException
+            password = md5Util.getMd5(password,username);
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setEmail(email);
+            user.setPhone(phone);
             registerService.registerNewUser(user);
             return SUCCESS;
         }catch (Exception e){

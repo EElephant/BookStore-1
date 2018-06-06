@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <interceptors>
+            <interceptor name="authorizationinterceptor" class="top.yimiaohome.common.AuthorizationInterceptor"/>
+        </interceptors>
+
+        <action name="login" class="top.yimiaohome.action.LoginAction" method="login">
+            <result name="input" >/login.jsp</result>
+            <result name="success">/index.jsp</result>
+        </action>
+
+        <action name="register" class="top.yimiaohome.action.RegisterAction">
+            <result name="success">/login.jsp</result>
+            <result name="error">/index.jsp</result>
+        </action>
+
+        <action name="repassword" class="top.yimiaohome.action.RePasswordAction">
+            <result name="success">/login.jsp</result>
+            <result name="error">/repassword.jsp</result>
+        </action>
+
+        <action name="logout" class="top.yimiaohome.action.LogoutAction">
+            <result name="success">/index.jsp</result>
+            <result name="error">/index.jsp</result>
+        </action>
+    </package>
+</struts>

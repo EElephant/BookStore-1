@@ -43,11 +43,14 @@ public class RoleDao {
                     .getResultList();
             transaction.commit();
             session.close();
+            return roleList;
         }catch (HibernateException e){
             logger.error(e.getMessage());
-            throw e;
+            return null;
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return null;
         }
-        return roleList;
     }
 
     public Role getRoleByRoleName(String roleName) throws HibernateException,NullPointerException{

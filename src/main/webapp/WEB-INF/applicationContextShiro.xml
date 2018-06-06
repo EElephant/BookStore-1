@@ -32,7 +32,7 @@
         参数为设置加密器
         shiro提供的加密器，加密方法为md5，加密次数1
     -->
-    <bean id="customRealm" class="top.yimiaohome.shiro.CustomRealm">
+    <bean id="customRealm" class="top.yimiaohome.shiro.CustomRealm" init-method="onInit">
         <property name="credentialsMatcher">
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
                 <property name="hashAlgorithmName" value="MD5"></property> <!-- 加密算法的名称 -->

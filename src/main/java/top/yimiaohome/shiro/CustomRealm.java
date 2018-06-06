@@ -92,4 +92,8 @@ public class CustomRealm extends AuthorizingRealm implements Serializable {
         }
 
     }
+
+    public CustomRealm() {
+        super();
+    }
 }

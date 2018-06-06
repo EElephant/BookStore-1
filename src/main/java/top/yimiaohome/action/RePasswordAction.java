@@ -30,7 +30,8 @@ public class RePasswordAction extends ActionSupport {
 
 
     User user;
-    String password;
+    String oldPassword;
+    String newPassword;
     String rePassword;
 
     Logger logger = LogManager.getLogger(this.getClass().getName());
@@ -39,9 +40,9 @@ public class RePasswordAction extends ActionSupport {
         user = (User) ActionContext.getContext().getSession().get("loginUser");
         try {
 //          public String getMd5(String credentials,String salt) throws CodecException,UnknownAlgorithmException
-            password = md5Util.getMd5(password,user.getUsername());
+            newPassword = md5Util.getMd5(newPassword,user.getUsername());
             rePassword = md5Util.getMd5(rePassword,user.getUsername());
-            user.setPassword(password);
+            user.setPassword(newPassword);
             userDao.save(user);
             User newUser = (User) ActionContext.getContext().getSession().get("loginUser");
             logger.info("Session user is new password is " + newUser.getPassword());
@@ -62,12 +63,20 @@ public class RePasswordAction extends ActionSupport {
         this.user = user;
     }
 
-    public String getPassword() {
-        return password;
+    public String getOldPassword() {
+        return oldPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 
     public String getRePassword() {

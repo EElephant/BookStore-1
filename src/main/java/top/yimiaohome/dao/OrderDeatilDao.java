@@ -2,7 +2,7 @@
  * @Package top.yimiaohome.dao
  * @Description: TODO
  * @author yimiao
- * @date 2018/6/1 8:56
+ * @date 2018/6/6 14:32
  * @version V1.0
  */
 package top.yimiaohome.dao;
@@ -15,39 +15,50 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import top.yimiaohome.model.Permissions;
-import top.yimiaohome.model.Role;
-
+import top.yimiaohome.model.Order;
+import top.yimiaohome.model.OrderDeatil;
+import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class PermissionsDao {
 
+@Repository
+public class OrderDeatilDao {
     @Autowired
     SessionFactory sessionFactory;
 
     Logger logger = LogManager.getLogger(this.getClass().getName());
 
-    public List<Permissions> getPermissions(Role role){
+    public List<OrderDeatil> getOrderDetailsByUser(Order order){
 
         try {
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
-            List<Permissions> permissionList = (List<Permissions>) session.createQuery(
-                    "select p from Permissions p,RolePermissions i " +
-                            "where p.idPermissions = i.idPermissions " +
-                            "and i.idRole = :idRole")
-                    .setParameter("idRole",role.getIdRole())
-                    .list();
+            List<OrderDeatil> orderDeatilList = new ArrayList<>();
+            orderDeatilList = (List<OrderDeatil>) session.createQuery("from OrderDetail where idOrder = :idOrder")
+                    .setParameter("idOrder",order.getIdOrder())
+                    .getResultList();
             transaction.commit();
             session.close();
-            return permissionList;
+            return orderDeatilList;
         }catch (HibernateException e){
             logger.error(e.getMessage());
             return null;
         }catch (Exception e){
             logger.error(e.getMessage());
             return null;
+        }
+    }
+
+    public int save(OrderDeatil orderDeatil){
+        try{
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+            int result = (int) session.save(orderDeatil);
+            transaction.commit();
+            session.close();
+            return result;
+        }catch (HibernateException e){
+            return 0;
         }
     }
 }

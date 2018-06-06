@@ -11,7 +11,7 @@
 
 <html>
 <head>
-    <title>注册</title>
+    <title>修改密码</title>
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -35,32 +35,27 @@
     <div class="row" style="margin-top: 150px">
 
         <div class="col-md-offset-4 col-md-4" >
-            <form class="form-horizontal" action="register.action" method="post">
+            <form class="form-horizontal" action="repassword.action" method="post">
                 <fieldset>
                     <div id="legend" class="">
-                        <legend class="">创建账户</legend>
+                        <legend class="">修改密码</legend>
                     </div>
                     <div class="col-md-offset-4 col-auto">
                         <div class="col-md-6">
+
                             <div class="form-group">
-                                <label class="control-label">用户名*</label>
-                                    <input type="text" name="username" class="form-control" required="required" pattern="[0-9a-zA-Z]{*}" minlength="6" maxlength="20">
-                                    <p class="help-block">只允许英文字母或数字</p>
+                                <label class="control-label">原密码*</label>
+                                    <input type="password" name="oldPassword" class="form-control" required="required" pattern="[0-9a-zA-Z]{*}" minlength="6" maxlength="20">
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label">邮箱*</label>
-                                    <input type="email" name="email" class="form-control" required="required">
+                                <label class="control-label">新密码*</label>
+                                <input type="password" name="newPassword" class="form-control" required="required" pattern="[0-9a-zA-Z]{*}" minlength="6" maxlength="20">
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label">手机号码*</label>
-                                <input type="tel" name="phone" class="form-control" required="required" pattern="[0-9a-zA-Z]{*}">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">密码*</label>
-                                    <input type="password" name="password" class="form-control" required="required" pattern="[0-9a-zA-Z]{*}" minlength="6" maxlength="20">
+                                <label class="control-label">重复密码*</label>
+                                <input type="password" name="rePassword" class="form-control" required="required" pattern="[0-9a-zA-Z]{*}" minlength="6" maxlength="20">
                             </div>
 
                             <div class="form-group">
@@ -72,13 +67,6 @@
                                     <input type="text" name="kaptchaVerifyCode" class="form-control" required="required">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label"></label>
-                                <label class="control">
-                                    <input type="checkbox" value="我已阅读并同意网站的使用条件及隐私声明。" required="required">
-                                    我已阅读并同意网站的使用条件及隐私声明。
-                                </label>
-                        </div>
 
 
                         <div class="control-group col-md-6">
@@ -86,7 +74,7 @@
 
                             <!-- Button -->
                             <div class="controls">
-                                <button class="btn btn-primary btn-block">注册</button>
+                                <button class="btn btn-primary btn-block">修改密码</button>
                             </div>
                         </div>
 
