@@ -11,8 +11,9 @@
         </interceptors>
 
         <action name="login" class="top.yimiaohome.action.LoginAction" method="login">
-            <result name="input" >/login.jsp</result>
+            <result name="input">/login.jsp</result>
             <result name="success">/index.jsp</result>
+            <result name="error">/login.jsp</result>
         </action>
 
         <action name="register" class="top.yimiaohome.action.RegisterAction">
@@ -30,4 +31,5 @@
             <result name="error">/index.jsp</result>
         </action>
     </package>
+
 </struts>

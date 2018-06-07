@@ -23,7 +23,7 @@ public class Permissions {
     private int idPermissions;
     @Column
     private String permissionsName;
-    @Column
+    @Column(nullable = true,insertable = false)
     private LocalDateTime createTime;
 
     public int getIdPermissions() {

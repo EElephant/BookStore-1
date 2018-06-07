@@ -78,6 +78,7 @@ public class CustomRealm extends AuthorizingRealm implements Serializable {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
         try {
             User user = userDao.findUserByName(usernamePasswordToken.getUsername());
+            User user1 = userDao.findUserByName(usernamePasswordToken.getUsername());
             logger.info("db username : " + user.getUsername() + " ,password : " + user.getPassword());
             logger.info("token username : " + usernamePasswordToken.getUsername().toString() + " ,password : " + String.valueOf(usernamePasswordToken.getPassword()));
 //        参数：

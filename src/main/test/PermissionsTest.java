@@ -28,6 +28,22 @@ public class PermissionsTest extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     UserDao userDao;
+
+    @Test
+    public void testUserDao(){
+        System.out.println("*********************\n\n\n");
+        System.out.println(userDao.getClass().getName());
+        System.out.println(userDao.findUserByName("test").getUsername());
+        System.out.println(userDao.findUserByName("test").getUsername());
+        System.out.println(userDao.findUserByName("test").getUsername());
+        System.out.println(userDao.findUserByName("test").getUsername());
+        System.out.println(userDao.findUserByName("test").getUsername());
+        System.out.println(userDao.findUserByName("test").getUsername());
+        System.out.println(userDao.findUserByName("test").getUsername());
+        System.out.println(userDao.findUserByName("test").getUsername());
+        System.out.println(userDao.findUserByName("test").getUsername());
+    }
+
     @Autowired
     RoleDao roleDao;
 

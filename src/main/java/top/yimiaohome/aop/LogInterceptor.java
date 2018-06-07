@@ -31,12 +31,12 @@ public class LogInterceptor {
 
     @Before("recordLog()")
     public void before(JoinPoint point){
-        logger.info(point.getSignature().getDeclaringType().getName() + " - " + point.getSignature().getName() + "() start.");
+        logger.debug(point.getSignature().getDeclaringType().getName() + " - " + point.getSignature().getName() + "() start.");
     }
 
     @After("recordLog()")
     public void after(JoinPoint point){
-        logger.info(point.getSignature().getDeclaringType().getName() + " - " + point.getSignature().getName()  + "() stop.");
+        logger.debug(point.getSignature().getDeclaringType().getName() + " - " + point.getSignature().getName()  + "() stop.");
     }
 
 }

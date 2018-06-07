@@ -198,7 +198,7 @@
                 <s:fielderror theme="bootstrap"/>
 
                 <h2><s:property  value="popedom"/></h2>
-                <s:form action="login" theme="bootstrap"  cssClass="form-horizontal" label="登录" method="POST">
+                <s:form action="login" theme="bootstrap" namespace="/" cssClass="form-horizontal" label="登录" method="POST">
                     <s:textfield name="username" cssClass="input-sm"  elementCssClass="col-xs-8" label="账号"/>
                     <s:password name="password" cssClass="input-sm"  elementCssClass="col-xs-8" label="密码"/>
                     <div class="form-group">

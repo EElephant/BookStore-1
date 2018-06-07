@@ -24,12 +24,14 @@ import top.yimiaohome.model.User;
 @Component
 public class LoginAction extends ActionSupport {
 
-    @Autowired
     UserDao userDao;
-    @Autowired
     Md5Util md5Util;
-
     Logger logger = LogManager.getLogger(this.getClass().getName());
+
+    public LoginAction(UserDao userDao, Md5Util md5Util) {
+        this.userDao = userDao;
+        this.md5Util = md5Util;
+    }
 
     private String username;
     private String password;
@@ -39,29 +41,32 @@ public class LoginAction extends ActionSupport {
         if (!currentUser.isAuthenticated()){
             try {
 //          public String getMd5(String credentials,String salt) throws CodecException,UnknownAlgorithmException
-                password = md5Util.getMd5(password, username);
-            }catch (Exception e){
-                return ERROR;
-            }
-            UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-            try{
+//                password = md5Util.getMd5(password, username);
+                logger.info("username is :"+username +", password is :"+password);
+                UsernamePasswordToken token = new UsernamePasswordToken(username,password);
                 currentUser.login(token);
-                ActionContext.getContext().getSession().put("loginUser",userDao.findUserByName(String.valueOf(currentUser.getPrincipal())));
-                User user = (User) ActionContext.getContext().getSession().get("loginUser");
+                logger.info(username + " 登录成功.");
                 currentUser.checkRole("test");
                 currentUser.checkPermission("test");
             } catch (UnknownAccountException uae) {
                 logger.info("用户名不存在: " + uae);
+                logger.error(uae.getMessage());
                 return "input";
             } catch (IncorrectCredentialsException ice) {
-                logger.info("用户名存在,但密码和用户名不匹配: " + ice);
+                logger.info("用户名存在,但密码不匹配: " + ice);
+                logger.error(ice.getMessage());
                 return "input";
             } catch (LockedAccountException lae) {
                 logger.info("用户被锁定: " + lae);
+                logger.error(lae.getMessage());
                 return "input";
             } catch (AuthenticationException ae) {
                 logger.info("其他异常: " + ae);
+                logger.error(ae.getMessage());
                 return "input";
+            }catch (Exception e){
+                logger.error(e.getMessage());
+                return ERROR;
             }
         }
 // 退出登录，测试时用。正式版本删除该行代码
@@ -76,7 +81,7 @@ public class LoginAction extends ActionSupport {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.trim();
     }
 
     public String getPassword() {
@@ -84,6 +89,6 @@ public class LoginAction extends ActionSupport {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password.trim();
     }
 }

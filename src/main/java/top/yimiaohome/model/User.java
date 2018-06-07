@@ -28,7 +28,7 @@ public class User implements Serializable {
     private String password;
     @Column
     private String email;
-    @Column(nullable = true)
+    @Column(nullable = true,insertable = false)
     private LocalDateTime createDate;
     @Column
     private String phone;

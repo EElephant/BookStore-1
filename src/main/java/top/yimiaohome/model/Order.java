@@ -31,7 +31,7 @@ public class Order {
     String postNum;
     @Column
     String postAdress;
-    @Column(nullable = true)
+    @Column(nullable = true,insertable = false)
     LocalDateTime createTime;
 
     public int getIdOrder() {

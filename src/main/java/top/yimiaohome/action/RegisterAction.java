@@ -19,12 +19,13 @@ import top.yimiaohome.service.RegisterService;
 @Component
 public class RegisterAction extends ActionSupport {
 
-    @Autowired
     RegisterService registerService;
-    @Autowired
-    private User user;
-    @Autowired
     Md5Util md5Util;
+
+    public RegisterAction(RegisterService registerService, Md5Util md5Util) {
+        this.registerService = registerService;
+        this.md5Util = md5Util;
+    }
 
     Logger logger = LogManager.getLogger(getClass().getName());
 
@@ -38,6 +39,7 @@ public class RegisterAction extends ActionSupport {
 
         try {
 //          public String getMd5(String credentials,String salt) throws CodecException,UnknownAlgorithmException
+            User user = new User();
             password = md5Util.getMd5(password,username);
             user.setUsername(username);
             user.setPassword(password);

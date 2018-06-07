@@ -24,7 +24,7 @@ public class Role {
     private int idRole;
     @Column
     private String roleName;
-    @Column
+    @Column(nullable = true,insertable = false)
     private LocalDateTime createTime;
 
     public int getIdRole() {
