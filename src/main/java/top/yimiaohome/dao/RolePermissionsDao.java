@@ -7,38 +7,13 @@
  */
 package top.yimiaohome.dao;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import top.yimiaohome.model.RolePermissions;
-import top.yimiaohome.model.UserRole;
 
 @Repository
-@Transactional
-public class RolePermissionsDao {
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    Logger logger = LogManager.getLogger(this.getClass().getName());
+public class RolePermissionsDao extends BaseDaoImpl<RolePermissions,Integer> {
 
     public int save(RolePermissions rolePermissions){
-        int result = 0;
-        try{
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-            result = (int) session.save(rolePermissions);
-            transaction.commit();
-            session.close();
-        }catch (HibernateException e){
-            logger.error(e.getMessage());
-            throw e;
-        }
-        return result;
+        return super.save(rolePermissions);
     }
 }

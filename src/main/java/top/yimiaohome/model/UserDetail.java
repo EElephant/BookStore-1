@@ -7,29 +7,38 @@
  */
 package top.yimiaohome.model;
 
+import org.hibernate.annotations.Type;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Component
+@Repository
 @Scope("prototype")
 @Entity
 @Table
 public class UserDetail {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    int idUserDetail;
+    @Column
     int idUser;
-    @Column
+    @Column(nullable = true)
     String firstName;
-    @Column
+    @Column(nullable = true)
     String lastName;
     @Column(nullable = true)
     String sex;
     @Column(nullable = true)
     LocalDate birthday;
+
+    public int getIdUserDetail() {
+        return idUserDetail;
+    }
+
+    public void setIdUserDetail(int idUserDetail) {
+        this.idUserDetail = idUserDetail;
+    }
 
     public int getIdUser() {
         return idUser;

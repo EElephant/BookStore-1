@@ -13,7 +13,7 @@
 <head>
     <title>修改密码</title>
 
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
 
@@ -28,7 +28,7 @@
 </head>
 <body>
 <%--导航栏--%>
-<s:include value="header.jsp"/>
+<s:include value="../header.jsp"/>
 <div class="container-fluid">
     <%--内容--%>
 
@@ -85,6 +85,6 @@
     </div>
 </div>
 </body>
-<script src="js/jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 </html>

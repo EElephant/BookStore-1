@@ -7,7 +7,6 @@
  */
 package top.yimiaohome.action;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,12 +14,9 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import top.yimiaohome.common.Md5Util;
 import top.yimiaohome.dao.UserDao;
-import top.yimiaohome.model.User;
-
 @Component
 public class LoginAction extends ActionSupport {
 
@@ -35,6 +31,7 @@ public class LoginAction extends ActionSupport {
 
     private String username;
     private String password;
+
     public String login() throws Exception{
         Subject currentUser = SecurityUtils.getSubject();
         Session session = currentUser.getSession();
@@ -70,10 +67,20 @@ public class LoginAction extends ActionSupport {
             }
         }
 // 退出登录，测试时用。正式版本删除该行代码
-        currentUser.logout();
-        logger.error("退出登录");
-
+//        currentUser.logout();
+//        logger.error("退出登录");
         return SUCCESS;
+    }
+
+    public String logout() throws Exception{
+        try{
+            SecurityUtils.getSubject().logout();
+            logger.info("退出登录");
+            return SUCCESS;
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return ERROR;
+        }
     }
 
     public String getUsername() {

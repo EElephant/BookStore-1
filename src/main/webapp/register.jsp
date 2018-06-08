@@ -16,7 +16,6 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-
     <script src="/js/jquery-1.12.4.js"/>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -64,7 +63,7 @@
                             </div>
 
                             <div class="form-group">
-                                <img class="w-100" src="/kaptcha.jpg"/>
+                                <img class="w-100" id="kaptchaImg" src="/kaptcha.jpg"/>
                             </div>
 
                             <div class="form-group">

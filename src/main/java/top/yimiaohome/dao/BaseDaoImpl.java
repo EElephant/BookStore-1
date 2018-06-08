@@ -23,7 +23,7 @@ import java.util.Map;
 
 //泛型类，实现泛型接口BaseDao
 @Transactional
-public class BaseDaoImpl<T,PK extends Serializable> implements BaseDao<T,PK> {
+public class BaseDaoImpl<T,PK extends Serializable> implements BaseDao<T,PK>,Serializable {
 
     @Autowired
     SessionFactory sessionFactory;

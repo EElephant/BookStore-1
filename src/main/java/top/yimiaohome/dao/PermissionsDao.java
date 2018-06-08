@@ -7,47 +7,21 @@
  */
 package top.yimiaohome.dao;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 import top.yimiaohome.model.Permissions;
 import top.yimiaohome.model.Role;
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
-public class PermissionsDao {
+public class PermissionsDao extends BaseDaoImpl<Permissions,Integer> {
 
-    @Autowired
-    SessionFactory sessionFactory;
-
-    Logger logger = LogManager.getLogger(this.getClass().getName());
-
-    public List<Permissions> getPermissions(Role role){
-
-        try {
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-            List<Permissions> permissionList = (List<Permissions>) session.createQuery(
-                    "select p from Permissions p,RolePermissions i " +
-                            "where p.idPermissions = i.idPermissions " +
-                            "and i.idRole = :idRole")
-                    .setParameter("idRole",role.getIdRole())
-                    .list();
-            transaction.commit();
-            session.close();
-            return permissionList;
-        }catch (HibernateException e){
-            logger.error(e.getMessage());
-            return null;
-        }catch (Exception e){
-            logger.error(e.getMessage());
-            return null;
-        }
+    public List<Permissions> getPermissionsByRoleName(String roleName){
+        String hql = "select p from Permissions p,RolePermissions i,Role r where p.idPermissions = i.idPermissions and i.idRole = r.idRole and roleName = :roleName";
+        Map<String,Object> params = new HashMap<>();
+        params.put("roleName",roleName);
+        return findAll(hql,params);
     }
 }

@@ -13,24 +13,21 @@
 <head>
     <title>登录</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
     <script src="/js/jquery-1.12.4.js"/>
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+    <sb:head/>
 </head>
 <body>
 <%--导航栏--%>
-<s:include value="header.jsp"/>
+<s:include value="/header.jsp"/>
 <div class="container" style="margin-top: 200px">
     <div class="row">
 
@@ -57,8 +54,6 @@
     </div>
 </div>
 <script src="js/jquery.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="/js/bootstrap-datepicker.js"></script>
-<script src="/js/bootstrap.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -33,15 +33,7 @@ public class PermissionsTest extends AbstractJUnit4SpringContextTests {
     public void testUserDao(){
         System.out.println("*********************\n\n\n");
         System.out.println(userDao.getClass().getName());
-        System.out.println(userDao.findUserByName("test").getUsername());
-        System.out.println(userDao.findUserByName("test").getUsername());
-        System.out.println(userDao.findUserByName("test").getUsername());
-        System.out.println(userDao.findUserByName("test").getUsername());
-        System.out.println(userDao.findUserByName("test").getUsername());
-        System.out.println(userDao.findUserByName("test").getUsername());
-        System.out.println(userDao.findUserByName("test").getUsername());
-        System.out.println(userDao.findUserByName("test").getUsername());
-        System.out.println(userDao.findUserByName("test").getUsername());
+        System.out.println(userDao.findUserByUsername("test").getUsername());
     }
 
     @Autowired
@@ -70,9 +62,9 @@ public class PermissionsTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void testRole(){
 
-        User u = userDao.findUserByName("test");
+        User u = userDao.findUserByUsername("test");
         System.out.println(u.getPassword());
-        List<Role> l = roleDao.getRolesByUser(u);
+        List<Role> l = roleDao.getRolesByUsername(u.getUsername());
         for (Role r : l ){
             System.out.println(r.getRoleName());
         }

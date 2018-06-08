@@ -20,7 +20,6 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/book.css" rel="stylesheet">
 
-    <script src="/js/jquery-1.12.4.js"/>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

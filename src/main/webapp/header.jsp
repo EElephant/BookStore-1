@@ -34,7 +34,7 @@
             <li class="dropdown col-auto">
                 <a class="dropdown-toggle text-white" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">我的账户</a>
                 <div class="dropdown-menu dropdown-menu-right bg-danger" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item text-white" href="/user/account.jsp">我的账号</a>
+                    <a class="dropdown-item text-white" href="/userDetail.action">账号信息</a>
                     <a class="dropdown-item text-white" href="/user/order.jsp">我的订单</a>
                     <a class="dropdown-item text-white" href="/logout.action">退出登录</a>
                 </div>
@@ -48,7 +48,4 @@
 </div>
 </div>
 </body>
-<script src="js/jquery.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="/js/bootstrap.js"></script>
 </html>

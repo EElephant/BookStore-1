@@ -35,7 +35,8 @@ public class RegisterAction extends ActionSupport {
     private String phone;
     private String kaptchaValicode;
 
-    public String execute(){
+    @Override
+    public String execute() throws Exception{
 
         try {
 //          public String getMd5(String credentials,String salt) throws CodecException,UnknownAlgorithmException

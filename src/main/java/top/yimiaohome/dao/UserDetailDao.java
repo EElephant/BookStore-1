@@ -7,20 +7,21 @@
  */
 package top.yimiaohome.dao;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import top.yimiaohome.model.UserDetail;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Repository
-@Transactional
-public class UserDetailDao {
+public class UserDetailDao extends BaseDaoImpl<UserDetail,Integer> {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    Logger logger = LogManager.getLogger(this.getClass().getName());
+    public UserDetail getUserDetailByUsername(String username) throws Exception{
+        String hql = "select ud from UserDetail ud,User u where ud.idUser = u.idUser and username = :username";
+        Map<String,Object> params = new HashMap<>();
+        params.put("username",username);
+        return findAll(hql,params).get(0);
+    }
 
 }

@@ -16,6 +16,11 @@
             <result name="error">/login.jsp</result>
         </action>
 
+        <action name="logout" class="top.yimiaohome.action.LoginAction" method="logout">
+            <result name="success">/index.jsp</result>
+            <result name="error">/index.jsp</result>
+        </action>
+
         <action name="register" class="top.yimiaohome.action.RegisterAction">
             <result name="success">/login.jsp</result>
             <result name="error">/index.jsp</result>
@@ -23,12 +28,17 @@
 
         <action name="repassword" class="top.yimiaohome.action.RePasswordAction">
             <result name="success">/login.jsp</result>
-            <result name="error">/repassword.jsp</result>
+            <result name="error">/user/repassword.jsp</result>
         </action>
 
-        <action name="logout" class="top.yimiaohome.action.LogoutAction">
-            <result name="success">/index.jsp</result>
-            <result name="error">/index.jsp</result>
+        <action name="userDetail" class="top.yimiaohome.action.UserDetailAction" method="init">
+            <result name="success">/user/detail.jsp</result>
+            <result name="error">/user/detail.jsp</result>
+        </action>
+
+        <action name="userDetailUpdate" class="top.yimiaohome.action.UserDetailUpdateAction" method="update">
+            <result name="success">/user/detail.jsp</result>
+            <result name="error">/user/detail.jsp</result>
         </action>
     </package>
 
