@@ -7,14 +7,13 @@
  */
 package top.yimiaohome.model;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Component
-@Scope("prototype")
 @Entity
 @Table
 public class User implements Serializable {
@@ -23,29 +22,17 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
     @Column
+    private String email;
+    @Column
     private String username;
     @Column
     private String password;
     @Column
-    private String email;
-    @Column(nullable = true,insertable = false)
     private LocalDateTime createDate;
     @Column
     private String phone;
     @Column(nullable = true)
     private Integer defaultAddressId;
-
-    public User() {
-    }
-
-    public User(String username, String password, String email, String phone) {
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.createDate = createDate;
-        this.phone = phone;
-        this.defaultAddressId = defaultAddressId;
-    }
 
     public int getIdUser() {
         return idUser;

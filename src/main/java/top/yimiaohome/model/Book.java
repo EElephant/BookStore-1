@@ -1,77 +1,73 @@
 /**
  * @Package top.yimiaohome.model
  * @Description: TODO
- * @author yimiao
- * @date 2018/6/6 14:51
+ * @author 一贱你就笑
+ * @date 2018/6/4 17:01
  * @version V1.0
  */
 package top.yimiaohome.model;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-
+import java.math.BigDecimal;
 @Component
-@Scope("prototype")
 @Entity
 @Table
 public class Book {
-//    书籍数量，用于创建订单时确认数量
-    int numebr;
 
-    @GeneratedValue
     @Id
-    int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String isbn;
     @Column
-    String skuid;
+    private int id;
     @Column
-    String isbn;
+    private String skuid;
     @Column
-    String title;
+    private String title;
     @Column
-    String author;
+    private String author;
     @Column
-    String publisher;
-    @Column(name = "m_price")
-    float marketPrice;
-    @Column(name = "p_price")
-    float presentPrice;
+    private String publisher;
     @Column
-    String type0;
+    private BigDecimal m_price;
+    @Column
+    private BigDecimal p_price;
+    @Column
+    private String type0;
+    @Column
+    private String type1;
+    @Column
+    private String descrtion;
+    @Column
+    private String language;
     @Column(nullable = true)
-    String type1l;
+    private String edition;
+    /*@Column
+    private String XXXXXXXXXXXXX;//关键字，待改正*/
     @Column(nullable = true)
-    String description;
+    private String format;
     @Column(nullable = true)
-    String language;
+    private String publisher_time;
     @Column(nullable = true)
-    String edition;
-    @Column(name = "package",nullable = true)
-    String bookPackage;
+    private String paper;
     @Column(nullable = true)
-    String format;
+    private String page;
     @Column(nullable = true)
-    String publisherTime;
+    private String words;
     @Column(nullable = true)
-    String paper;
+    private String comment_counts;
     @Column(nullable = true)
-    String page;
+    private String content_detail;
     @Column(nullable = true)
-    String words;
-    @Column(nullable = true)
-    String cpmmentCount;
-    @Column(nullable = true)
-    String contentDeatil;
-    @Column(nullable = true)
-    String imgs;
+    private String imgs;
 
-    public int getNumebr() {
-        return numebr;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setNumebr(int numebr) {
-        this.numebr = numebr;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public int getId() {
@@ -88,14 +84,6 @@ public class Book {
 
     public void setSkuid(String skuid) {
         this.skuid = skuid;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
     }
 
     public String getTitle() {
@@ -122,20 +110,20 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public float getMarketPrice() {
-        return marketPrice;
+    public BigDecimal getM_price() {
+        return m_price;
     }
 
-    public void setMarketPrice(float marketPrice) {
-        this.marketPrice = marketPrice;
+    public void setM_price(BigDecimal m_price) {
+        this.m_price = m_price;
     }
 
-    public float getPresentPrice() {
-        return presentPrice;
+    public BigDecimal getP_price() {
+        return p_price;
     }
 
-    public void setPresentPrice(float presentPrice) {
-        this.presentPrice = presentPrice;
+    public void setP_price(BigDecimal p_price) {
+        this.p_price = p_price;
     }
 
     public String getType0() {
@@ -146,20 +134,20 @@ public class Book {
         this.type0 = type0;
     }
 
-    public String getType1l() {
-        return type1l;
+    public String getType1() {
+        return type1;
     }
 
-    public void setType1l(String type1l) {
-        this.type1l = type1l;
+    public void setType1(String type1) {
+        this.type1 = type1;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescrtion() {
+        return descrtion;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescrtion(String descrtion) {
+        this.descrtion = descrtion;
     }
 
     public String getLanguage() {
@@ -178,13 +166,13 @@ public class Book {
         this.edition = edition;
     }
 
-    public String getBookPackage() {
-        return bookPackage;
+    /*public String getXXXXXXXXXXXXX() {
+        return XXXXXXXXXXXXX;
     }
 
-    public void setBookPackage(String bookPackage) {
-        this.bookPackage = bookPackage;
-    }
+    public void setXXXXXXXXXXXXX(String XXXXXXXXXXXXX) {
+        this.XXXXXXXXXXXXX = XXXXXXXXXXXXX;
+    }*/
 
     public String getFormat() {
         return format;
@@ -194,12 +182,12 @@ public class Book {
         this.format = format;
     }
 
-    public String getPublisherTime() {
-        return publisherTime;
+    public String getPublisher_time() {
+        return publisher_time;
     }
 
-    public void setPublisherTime(String publisherTime) {
-        this.publisherTime = publisherTime;
+    public void setPublisher_time(String publisher_time) {
+        this.publisher_time = publisher_time;
     }
 
     public String getPaper() {
@@ -226,20 +214,20 @@ public class Book {
         this.words = words;
     }
 
-    public String getCpmmentCount() {
-        return cpmmentCount;
+    public String getComment_counts() {
+        return comment_counts;
     }
 
-    public void setCpmmentCount(String cpmmentCount) {
-        this.cpmmentCount = cpmmentCount;
+    public void setComment_counts(String comment_counts) {
+        this.comment_counts = comment_counts;
     }
 
-    public String getContentDeatil() {
-        return contentDeatil;
+    public String getContent_detail() {
+        return content_detail;
     }
 
-    public void setContentDeatil(String contentDeatil) {
-        this.contentDeatil = contentDeatil;
+    public void setContent_detail(String content_detail) {
+        this.content_detail = content_detail;
     }
 
     public String getImgs() {

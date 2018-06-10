@@ -8,13 +8,8 @@
 package top.yimiaohome.model;
 
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 
-@Component
-@Scope("prototype")
 @Entity
 @Table
 public class RolePermissions {
