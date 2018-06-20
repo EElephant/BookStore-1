@@ -7,9 +7,14 @@
  */
 package top.yimiaohome.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Component
+@Scope("prototype")
 @Entity
 @Table
 public class Permissions {
@@ -18,7 +23,7 @@ public class Permissions {
     private int idPermissions;
     @Column
     private String permissionsName;
-    @Column
+    @Column(nullable = true,insertable = false)
     private LocalDateTime createTime;
 
     public int getIdPermissions() {

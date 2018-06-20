@@ -45,39 +45,37 @@ public class CustomRealm extends AuthorizingRealm implements Serializable {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         //获取登录时输入的用户名
         String username = (String) principals.getPrimaryPrincipal();
-        User user = userDao.findUserByName(username);
-        if (user != null) {
-            //权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
-            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            //用户的角色集合
-            Set<String> rolesNames = new HashSet<>();
-            Set<String> permissionsNames = new HashSet<>();
-            try {
-                List<Role> roleList = roleDao.getRoles(user);
-                for (Role role : roleList) {
-                    rolesNames.add(role.getRoleName());
-                    logger.info("role :" + role.getRoleName());
-                    List<Permissions> permissionsList = permissionsDao.getPermissions(role);
-                    for (Permissions permissions : permissionsList) {
-                        permissionsNames.add(permissions.getPermissionsName());
-                    }
-                }
-            }catch (NullPointerException e){
-                logger.error(e.getMessage());
+        logger.info(username + " is check role now.");
+        //用户的角色集合
+        Set<String> rolesNames = new HashSet<>();
+        Set<String> permissionsNames = new HashSet<>();
+        try {
+            List<Role> roleList = roleDao.getRolesByUsername(username);
+            for (Role role : roleList) {
+                rolesNames.add(role.getRoleName());
+                logger.info("role :" + role.getRoleName());
             }
-            info.setRoles(rolesNames);
-            info.setStringPermissions(permissionsNames);
-            return info;
+            for (String roleName : rolesNames){
+                List<Permissions> permissionsList = permissionsDao.getPermissionsByRoleName(roleName);
+                for (Permissions permissions : permissionsList) {
+                    permissionsNames.add(permissions.getPermissionsName());
+                }
+            }
+        }catch (NullPointerException e){
+            logger.error(e.getMessage());
         }
-        return null;
-
+        //权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.setRoles(rolesNames);
+        info.setStringPermissions(permissionsNames);
+        return info;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
         try {
-            User user = userDao.findUserByName(usernamePasswordToken.getUsername());
+            User user = userDao.findUserByUsername(usernamePasswordToken.getUsername());
             logger.info("db username : " + user.getUsername() + " ,password : " + user.getPassword());
             logger.info("token username : " + usernamePasswordToken.getUsername().toString() + " ,password : " + String.valueOf(usernamePasswordToken.getPassword()));
 //        参数：
@@ -91,5 +89,9 @@ public class CustomRealm extends AuthorizingRealm implements Serializable {
             throw new UnknownAccountException("没有这个账号");
         }
 
+    }
+
+    public CustomRealm() {
+        super();
     }
 }

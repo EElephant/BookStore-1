@@ -25,7 +25,11 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
+    <script src="js/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/book.js"></script>
     <sb:head/>
 </head>
 <body>
@@ -35,10 +39,10 @@
     <%--内容--%>
         <table border="1" width="50%">
             <tr>
-                <th>id</th>
-                <th>书籍编号</th>
-                <th>出版编号</th>
-                <th>价格</th>
+                <td>id</td>
+                <td>书籍编号</td>
+                <td>出版编号</td>
+                <td>价格</td>
             </tr>
 
             <s:iterator value="bookList" status="stat" var="booking">
@@ -47,17 +51,12 @@
                     <td><s:property value="#booking.skuid" /></td>
                     <td><s:property value="#booking.isbn" /></td>
                     <td><s:property value="#booking.m_price" /></td>
-                    <th><a href="addBook.jsp">添加</a></th>
-                    <th><a href="javascript:queryBookDetails('<s:property value="isbn"/>')">修改</a></th>
-                    <th><a href="javascript:deleteBook('<s:property value="isbn"/>')">删除</a></th>
+                <th><a href="addNewBook.jsp">添加</a></th>
+                <th><a href="javascript:queryBookDetailsF('<s:property value="isbn"/>')">修改</a></th>
+                <th><a href="javascript:deleteBookF('<s:property value="id"/>')">删除</a></th>
                 </tr>
             </s:iterator>
         </table>
 </div>
 </body>
-<script src="js/jquery.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="/js/bootstrap-datepicker.js"></script>
-<script src="/js/bootstrap.js"></script>
-<script src="/js/book.js"></script>
 </html>

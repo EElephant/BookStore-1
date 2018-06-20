@@ -2,38 +2,38 @@
  * @Package top.yimiaohome.action
  * @Description: TODO
  * @author 一贱你就笑
- * @date 2018/6/10 2:05
+ * @date 2018/6/13 10:24
  * @version V1.0
  */
 package top.yimiaohome.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
-import top.yimiaohome.dao.BookDao;
-import top.yimiaohome.model.Book;
+import top.yimiaohome.dao.StockDao;
 
-public class DeleteBookAction extends ActionSupport {
+public class DeleteStockAction extends ActionSupport {
     @Autowired
-    BookDao bookDao;
+    StockDao stockDao;
     private int id;
-    public DeleteBookAction(){}
+    public DeleteStockAction(){}
 
     @Override
     public String execute() throws Exception {
-        try {
-            bookDao.deleteBookById(id);
+        try{
+            stockDao.deleteStockById(id);
             return SUCCESS;
         }catch (Exception e){
+            System.out.println(e.getMessage());
             return INPUT;
         }
     }
 
-    public BookDao getBookDao() {
-        return bookDao;
+    public StockDao getStockDao() {
+        return stockDao;
     }
 
-    public void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
+    public void setStockDao(StockDao stockDao) {
+        this.stockDao = stockDao;
     }
 
     public int getId() {
@@ -43,5 +43,4 @@ public class DeleteBookAction extends ActionSupport {
     public void setId(int id) {
         this.id = id;
     }
-
 }

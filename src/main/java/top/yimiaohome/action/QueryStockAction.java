@@ -2,36 +2,34 @@
  * @Package top.yimiaohome.action
  * @Description: TODO
  * @author 一贱你就笑
- * @date 2018/6/10 2:09
+ * @date 2018/6/13 10:27
  * @version V1.0
  */
 package top.yimiaohome.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import top.yimiaohome.dao.BookDao;
-import top.yimiaohome.model.Book;
+import org.springframework.stereotype.Component;
+import top.yimiaohome.dao.StockDao;
+import top.yimiaohome.model.Stock;
 
 import java.util.List;
 
-public class QueryBookAction extends ActionSupport {
+@Component
+public class QueryStockAction extends ActionSupport {
     @Autowired
-    BookDao bookDao;
-    List<Book> bookList;
+    StockDao stockDao;
+    List<Stock> stockList;
     private String isbn;
-    public QueryBookAction(){}
-
-    Logger logger = LogManager.getLogger(getClass().getName());
+    public QueryStockAction(){}
 
     @Override
     public String execute() throws Exception {
-        try {
-            bookList=bookDao.findBookByIsbn(isbn);
-            logger.info(bookList.get(0).getTitle());
+        try{
+            stockList=stockDao.findStockByIsbn(isbn);
             return SUCCESS;
         }catch (Exception e){
+            System.out.println(e.getMessage());
             return INPUT;
         }
     }
@@ -46,12 +44,12 @@ public class QueryBookAction extends ActionSupport {
         }
     }
 
-    public List<Book> getBookList() {
-        return bookList;
+    public List<Stock> getStockList() {
+        return stockList;
     }
 
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
+    public void setStockList(List<Stock> stockList) {
+        this.stockList = stockList;
     }
 
     public String getIsbn() {
@@ -62,11 +60,11 @@ public class QueryBookAction extends ActionSupport {
         this.isbn = isbn;
     }
 
-    public BookDao getBookDao() {
-        return bookDao;
+    public StockDao getStockDao() {
+        return stockDao;
     }
 
-    public void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
+    public void setStockDao(StockDao stockDao) {
+        this.stockDao = stockDao;
     }
 }

@@ -9,21 +9,32 @@ package top.yimiaohome.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import top.yimiaohome.dao.BookDao;
 import top.yimiaohome.model.Book;
 
+@Component
 public class UpdateBookAction extends ActionSupport {
+    private String isbn;
+
+    Book book;
     @Autowired
     BookDao bookDao;
-    Book book;
-    public UpdateBookAction(){}
+
+    public UpdateBookAction() {
+        this.book = new Book();
+    }
 
     @Override
     public String execute() throws Exception {
         try{
-            bookDao.updateBook(book);
+            System.out.println(book);
+            bookDao.update(book);
+            System.out.println("success");
             return SUCCESS;
         }catch (Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("failed");
             return INPUT;
         }
     }
@@ -42,5 +53,13 @@ public class UpdateBookAction extends ActionSupport {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 }

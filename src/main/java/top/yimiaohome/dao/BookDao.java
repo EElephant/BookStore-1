@@ -17,79 +17,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import top.yimiaohome.model.Book;
+import top.yimiaohome.model.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @Transactional
-public class BookDao {
+public class BookDao extends BaseDaoImpl<Book,Integer> {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-    public BookDao(){}
-    Logger logger = LogManager.getLogger(this.getClass().getName());
     //通过isbn查找书籍信息
-    public List<Book> findBookByIsbn(String isbn){
-        List<Book> books = new ArrayList<>();
-        try{
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-            books = (List<Book>) session.createQuery("from Book where isbn = :isbn").setParameter("isbn",isbn).list();
-            transaction.commit();
-            session.close();
-        }catch (HibernateException e){
-            e.printStackTrace();
-            logger.error(e.getMessage());
-        }
-        return books;
+    public List<Book> findBookByIsbn(String isbn) throws HibernateException,NullPointerException{
+
+        String hql= "from Book where isbn = :isbn";
+        Map<String,Object> params = new HashMap<>();
+        params.put("isbn",isbn);
+        return findAll(hql,params);
     }
+
     //添加书籍
-    public boolean saveBook(Book book){
-        try{
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-            session.save(book);
-            transaction.commit();
-            session.close();
-            return true;
-        }catch (HibernateException e){
-            e.printStackTrace();
-            logger.error(e.getMessage());
-            return false;
-        }
+    public int saveBook(Book book) throws HibernateException{
+        return super.save(book);
     }
-    //通过isbn删除书籍信息
-    public boolean deleteBookByIsbn(String isbn){
-        try{
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-            //根据isbn获取要修改的用户数据
-            Book book=(Book)session.get(Book.class, isbn);
-            //删除该book
-            session.delete(book);
-            transaction.commit();
-            session.close();
-            return true;
-        }catch (HibernateException e){
-            e.printStackTrace();
-            logger.error(e.getMessage());
-            return false;
-        }
+
+    //通过id删除书籍信息
+    public boolean deleteBookById(int id){
+        Book book = super.get(id);
+        delete(book);
+        return true;
     }
-    //通过isbn修改书籍信息
-    public boolean updateBook(Book newbook){
-        try{
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-            session.saveOrUpdate(newbook);
-            transaction.commit();
-            session.close();
-            return true;
-        }catch (HibernateException e){
-            e.printStackTrace();
-            logger.error(e.getMessage());
-            return false;
-        }
+
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 }

@@ -3,15 +3,21 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd">
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <context:component-scan base-package="top.yimiaohome.dao"/>
+    <context:component-scan base-package="top.yimiaohome"/>
+
+    <aop:config  expose-proxy="true">
+        <aop:pointcut id="txPointcut" expression="execution(* top.yimiaohome..*.* (..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" order="500"/>
+    </aop:config>
+    <aop:aspectj-autoproxy  proxy-target-class="true"/>
 
     <!--
         c3p0 数据源
@@ -38,6 +44,7 @@
                 <prop key="dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="show_sql">true</prop>
                 <prop key="format_sql">true</prop>
+                <prop key="current_session_context_class">thread</prop>
             </props>
         </property>
     </bean>
@@ -53,5 +60,21 @@
     </bean>
 
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
+
+    <tx:advice id="txAdvice" transaction-manager="txManager" >
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="create*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="select*" propagation="REQUIRED"/>
+            <tx:method name="do*" propagation="REQUIRED" />
+            <tx:method name="load*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="get*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="find*" propagation="REQUIRED" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+
 
 </beans>

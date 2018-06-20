@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package name="stockStruts" namespace="/" extends="struts-default">
+
+        <action name="addStock" class="top.yimiaohome.action.AddStockAction" >
+            <result name="success">/index.jsp</result>
+            <result name="input">/addNewStock.jsp</result>
+        </action>
+
+        <action name="queryStock" class="top.yimiaohome.action.QueryStockAction" >
+            <result name="success">/showStock.jsp</result>
+            <result name="input">/stock.jsp</result>
+        </action>
+
+        <action name="queryStockDetail" class="top.yimiaohome.action.QueryStockDetailAction" >
+            <result name="success">/showStockDetail.jsp</result>
+            <result name="input">/stock.jsp</result>
+        </action>
+
+        <action name="deleteStock" class="top.yimiaohome.action.DeleteStockAction" >
+            <result name="success">/index.jsp</result>
+            <result name="input">/stock.jsp</result>
+        </action>
+
+        <action name="updateStock" class="top.yimiaohome.action.UpdateStockAction" >
+            <result name="success">/index.jsp</result>
+            <result name="input">/stock.jsp</result>
+        </action>
+
+    </package>
+
+</struts>

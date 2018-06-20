@@ -13,10 +13,7 @@
         http://www.springframework.org/schema/tx
          http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:annotation-config></context:annotation-config>
-    <context:component-scan base-package="top.yimiaohome.dao"/>
-    <context:component-scan base-package="top.yimiaohome.shiro"/>
-    <context:component-scan base-package="top.yimiaohome.common"/>
+    <context:component-scan base-package="top.yimiaohome"/>
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
 
@@ -32,7 +29,8 @@
         参数为设置加密器
         shiro提供的加密器，加密方法为md5，加密次数1
     -->
-    <bean id="customRealm" class="top.yimiaohome.shiro.CustomRealm">
+    <bean id="userDao" class="top.yimiaohome.dao.UserDao"/>
+    <bean id="customRealm" class="top.yimiaohome.shiro.CustomRealm" init-method="onInit">
         <property name="credentialsMatcher">
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
                 <property name="hashAlgorithmName" value="MD5"></property> <!-- 加密算法的名称 -->
@@ -57,7 +55,9 @@
     <!--
         DefaultAdvisorAutoProxyCreator搜索容器中的 advisor,并为每个bean创建代理
     -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
 
     <!--
         shiro spring aop

@@ -1,8 +1,10 @@
-<%--
+<%@ page import="java.util.Map" %>
+<%@ page import="com.opensymphony.xwork2.ActionContext" %>
+<%@ page import="top.yimiaohome.model.Stock" %><%--
   Created by IntelliJ IDEA.
   User: 一贱你就笑
   Date: 2018/6/10
-  Time: 0:04
+  Time: 11:10
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,7 +13,7 @@
 
 <html>
 <head>
-    <title>库存管理</title>
+    <title>修改库存信息</title>
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -31,17 +33,17 @@
 <body>
 <%--导航栏--%>
 <s:include value="header.jsp"/>
-<%--内容--%>
-<h2>这是库存搜索</h2>
-<div class="row">
-    <div class="col-auto offset-4" style="position: relative;margin-bottom: auto;margin-top:10px;">
-        <s:form class="form-inline form-horizontal" action="queryStock">
-            <s:textfield class="form-control mr-sm-2" type="text" name="isbn" placeholder="Search" aria-label="Search"/>
-            <s:submit class="btn btn-outline-danger my-2 my-sm-0" type="submit" value="搜索"/>
-        </s:form>
-    </div>
+<div class="container-fluid">
+    <%--内容--%>
+    <s:form action="updateStock" theme="bootstrap" namespace="/" method="POST">
+        <s:property value="stock.id"/>
+        <s:hidden name="stock.id"/>
+        <s:hidden name="stock.isbn"/>
+        <s:textfield name="stock.number" label="库存数量"/>
+        <s:textfield name="stock.dateTime" label="入库时间"/>
+        <s:submit value="确认修改"/>
+    </s:form>
 </div>
-
 </body>
 <script src="js/jquery.min.js"></script>
 <script src="js/scripts.js"></script>

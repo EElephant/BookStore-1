@@ -7,9 +7,14 @@
  */
 package top.yimiaohome.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Component
+@Scope("prototype")
 @Entity
 @Table
 public class Role {
@@ -19,7 +24,7 @@ public class Role {
     private int idRole;
     @Column
     private String roleName;
-    @Column
+    @Column(nullable = true,insertable = false)
     private LocalDateTime createTime;
 
     public int getIdRole() {

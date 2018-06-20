@@ -7,48 +7,28 @@
  */
 package top.yimiaohome.dao;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import top.yimiaohome.model.Role;
 import top.yimiaohome.model.User;
-import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
-@Transactional
-public class RoleDao {
+public class RoleDao extends BaseDaoImpl<Role,Integer> {
+    public List<Role> getRolesByUsername(String username) throws HibernateException,NullPointerException{
+        String hql = "select r from Role r,UserRole i,User u where r.idRole = i.idRole and i.idUser = u.idUser and username = :username";
+        Map<String,Object> params = new HashMap<>();
+        params.put("username",username);
+        return findAll(hql,params);
+    }
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    Logger logger = LogManager.getLogger(this.getClass().getName());
-
-    @Transactional
-    public List<Role> getRoles(User user){
-        List<Role> roleList = null;
-        try {
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-            roleList=session.createQuery(
-                    "select r from Role r,UserRole i " +
-                            "where r.idRole = i.idRole " +
-                            "and i.idUser = :idUser")
-                    .setParameter("idUser",user.getIdUser())
-                    .getResultList();
-            transaction.commit();
-            session.close();
-        }catch (HibernateException e){
-            e.printStackTrace();
-            logger.error(e.getMessage());
-        }
-        return roleList;
-
+    public Role getRoleByRoleName(String roleName) throws HibernateException,NullPointerException{
+        String hql = "from Role where roleName = :roleName";
+        Map<String,Object> params = new HashMap<>();
+        params.put("roleName",roleName);
+        return findAll(hql,params).get(0);
     }
 
 }

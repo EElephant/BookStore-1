@@ -7,39 +7,26 @@
  */
 package top.yimiaohome.dao;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import top.yimiaohome.model.User;
-
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 @Repository
-@Transactional
-public class UserDao {
+public class UserDao extends BaseDaoImpl<User,Integer> {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    public User findUserByUsername(String username) throws HibernateException,NullPointerException {
+        String hql = "from User where username = :username";
+        Map<String,Object> params = new HashMap<>();
+        params.put("username",username);
+        return findAll(hql,params).get(0);
+    }
 
-    Logger logger = LogManager.getLogger(this.getClass().getName());
-
-    public User findUserByName(String username) {
-        User user = null;
-        try {
-            Session session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-            user = (User) session.createQuery("from User where username = :username").setParameter("username",username).list().get(0);
-            transaction.commit();
-            session.close();
-        }catch (HibernateException e){
-            e.printStackTrace();
-            logger.error(e.getMessage());
-        }
-        return user;
+    public int save(User user) throws HibernateException{
+        int result = 0;
+        result = super.save(user);
+        return result;
     }
 }

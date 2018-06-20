@@ -28,10 +28,29 @@
     }
 }
 
-.nav>li>a:hover,.nav>li>a:focus {
+.nav>li>a:hover,.dropdown-item:hover{
     background-color:#e4b9b9!important;
 }
 
-.dropdown-item:hover{
-    background-color:#e4b9b9!important;
+.nav>li>a:focus,.dropdown-item:focus{
+    color:#c12e2a!important;
+}
+
+
+.cart>a{
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background-image: url("/icon/cart_white.png");
+    background-size: 35px 35px;
+    background-repeat:no-repeat;
+    background-position: center;
+}
+
+.cart>a:focus{
+    background-image: url("/icon/cart_red.png") !important;
+}
+
+.carousel-inner{
+    height: 530px;
 }

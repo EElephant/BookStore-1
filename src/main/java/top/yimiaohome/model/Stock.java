@@ -7,24 +7,26 @@
  */
 package top.yimiaohome.model;
 
-import org.springframework.stereotype.Component;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-@Component
 @Entity
 @Table
 public class Stock {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
     @Column
     private String isbn;
     @Column
     private int number;
-    @Column(nullable = true)
+    @Column(nullable = true,insertable = false)
     private LocalDateTime  stockingTime;
+    @Transient
+    private String dateTime;
 
     public int getId() {
         return id;
@@ -56,5 +58,24 @@ public class Stock {
 
     public void setStockingTime(LocalDateTime stockingTime) {
         this.stockingTime = stockingTime;
+    }
+    public void setDateTime(String dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.stockingTime = LocalDateTime.parse(dateTime,formatter);
+    }
+
+    public String getDateTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return stockingTime.format(formatter);
+    }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", number=" + number +
+                ", stockingTime=" + stockingTime +
+                '}';
     }
 }

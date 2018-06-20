@@ -3,46 +3,7 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-
-    <package name="BookStore" namespace="/" extends="struts-default">
-
-        <interceptors>
-            <interceptor name="authorizationinterceptor" class="top.yimiaohome.common.AuthorizationInterceptor"/>
-        </interceptors>
-
-        <action name="login" class="top.yimiaohome.action.LoginAction" method="login">
-            <result name="input" >/index.jsp</result>
-            <result name="success">/index.jsp</result>
-        </action>
-
-        <action name="stock" class="top.yimiaohome.action.StockAction" method="stock">
-            <result name="success" >/showStock.jsp</result>
-            <result name="input">/index.jsp</result>
-        </action>
-
-        <action name="addBook" class="top.yimiaohome.action.AddBookAction">
-            <result name="success" type="redirectAction">queryBook</result>
-            <result name="input">/index.jsp</result>
-        </action>
-
-        <action name="deleteBook" class="top.yimiaohome.action.DeleteBookAction">
-            <result name="success" >/stock.jsp</result>
-            <result name="input">/index.jsp</result>
-        </action>
-
-        <action name="queryBook" class="top.yimiaohome.action.QueryBookAction" method="query">
-            <result name="success" >/showBook.jsp</result>
-            <result name="input">/index.jsp</result>
-        </action>
-
-        <action name="queryBookDetail" class="top.yimiaohome.action.QueryBookDetailAction" method="query">
-            <result name="success" >/showBookDetail.jsp</result>
-            <result name="input">/index.jsp</result>
-        </action>
-
-        <action name="updateBook" class="top.yimiaohome.action.UpdateBookAction">
-            <result name="success" >/stock.jsp</result>
-            <result name="input">/index.jsp</result>
-        </action>
-    </package>
+    <include file="struts-user.xml"></include>
+    <include file="struts-book.xml"></include>
+    <include file="struts-stock.xml"></include>
 </struts>

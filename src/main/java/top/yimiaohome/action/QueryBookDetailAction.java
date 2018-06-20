@@ -8,6 +8,8 @@
 package top.yimiaohome.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import top.yimiaohome.dao.BookDao;
 import top.yimiaohome.model.Book;
@@ -17,13 +19,16 @@ import java.util.List;
 public class QueryBookDetailAction extends ActionSupport{
     @Autowired
     BookDao bookDao;
-    private String isbn;
     Book book;
+    private String isbn;
+
+    Logger logger = LogManager.getLogger(getClass().getName());
+
     public QueryBookDetailAction(){}
 
     public String execute() throws Exception{
         try {
-            book = (Book) bookDao.findBookByIsbn(isbn);
+            book = bookDao.findBookByIsbn(isbn).get(0);
             return SUCCESS;
         }catch (Exception e){
             return INPUT;
@@ -32,6 +37,14 @@ public class QueryBookDetailAction extends ActionSupport{
 
     public String getIsbn() {
         return isbn;
+    }
+
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 
     public void setIsbn(String isbn) {

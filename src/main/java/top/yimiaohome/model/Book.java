@@ -1,74 +1,66 @@
 /**
  * @Package top.yimiaohome.model
  * @Description: TODO
- * @author 一贱你就笑
- * @date 2018/6/4 17:01
+ * @author yimiao
+ * @date 2018/6/6 14:51
  * @version V1.0
  */
 package top.yimiaohome.model;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
-import java.math.BigDecimal;
-@Component
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Entity
 @Table
 public class Book {
 
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String isbn;
+    @Id
+    int id;
     @Column
-    private int id;
+    String skuid;
     @Column
-    private String skuid;
+    String isbn;
     @Column
-    private String title;
+    String title;
     @Column
-    private String author;
+    String author;
     @Column
-    private String publisher;
+    String publisher;
+    @Column(name = "m_price")
+    float m_price;
+    @Column(name = "p_price")
+    float p_price;
     @Column
-    private BigDecimal m_price;
-    @Column
-    private BigDecimal p_price;
-    @Column
-    private String type0;
-    @Column
-    private String type1;
-    @Column
-    private String descrtion;
-    @Column
-    private String language;
+    String type0;
     @Column(nullable = true)
-    private String edition;
-    /*@Column
-    private String XXXXXXXXXXXXX;//关键字，待改正*/
+    String type1;
     @Column(nullable = true)
-    private String format;
+    String descrtion;
     @Column(nullable = true)
-    private String publisher_time;
+    String language;
     @Column(nullable = true)
-    private String paper;
+    String edition;
+    @Column(name = "package",nullable = true)
+    String bookPackage;
     @Column(nullable = true)
-    private String page;
+    String format;
     @Column(nullable = true)
-    private String words;
+    String publisher_time;
     @Column(nullable = true)
-    private String comment_counts;
+    String paper;
     @Column(nullable = true)
-    private String content_detail;
+    String page;
     @Column(nullable = true)
-    private String imgs;
+    String words;
+    @Column(nullable = true)
+    String comment_counts;
+    @Column(nullable = true)
+    String content_detail;
+    @Column(nullable = true)
+    String imgs;
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
 
     public int getId() {
         return id;
@@ -84,6 +76,14 @@ public class Book {
 
     public void setSkuid(String skuid) {
         this.skuid = skuid;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitle() {
@@ -110,20 +110,44 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public BigDecimal getM_price() {
+    public float getM_price() {
         return m_price;
     }
 
-    public void setM_price(BigDecimal m_price) {
+    public void setM_price(float m_price) {
         this.m_price = m_price;
     }
 
-    public BigDecimal getP_price() {
+    public float getP_price() {
         return p_price;
     }
 
-    public void setP_price(BigDecimal p_price) {
+    public void setP_price(float p_price) {
         this.p_price = p_price;
+    }
+
+    public String getDescrtion() {
+        return descrtion;
+    }
+
+    public void setDescrtion(String descrtion) {
+        this.descrtion = descrtion;
+    }
+
+    public String getPublisher_time() {
+        return publisher_time;
+    }
+
+    public void setPublisher_time(String publisher_time) {
+        this.publisher_time = publisher_time;
+    }
+
+    public String getComment_counts() {
+        return comment_counts;
+    }
+
+    public void setComment_counts(String comment_counts) {
+        this.comment_counts = comment_counts;
     }
 
     public String getType0() {
@@ -142,14 +166,6 @@ public class Book {
         this.type1 = type1;
     }
 
-    public String getDescrtion() {
-        return descrtion;
-    }
-
-    public void setDescrtion(String descrtion) {
-        this.descrtion = descrtion;
-    }
-
     public String getLanguage() {
         return language;
     }
@@ -166,13 +182,13 @@ public class Book {
         this.edition = edition;
     }
 
-    /*public String getXXXXXXXXXXXXX() {
-        return XXXXXXXXXXXXX;
+    public String getBookPackage() {
+        return bookPackage;
     }
 
-    public void setXXXXXXXXXXXXX(String XXXXXXXXXXXXX) {
-        this.XXXXXXXXXXXXX = XXXXXXXXXXXXX;
-    }*/
+    public void setBookPackage(String bookPackage) {
+        this.bookPackage = bookPackage;
+    }
 
     public String getFormat() {
         return format;
@@ -180,14 +196,6 @@ public class Book {
 
     public void setFormat(String format) {
         this.format = format;
-    }
-
-    public String getPublisher_time() {
-        return publisher_time;
-    }
-
-    public void setPublisher_time(String publisher_time) {
-        this.publisher_time = publisher_time;
     }
 
     public String getPaper() {
@@ -214,14 +222,6 @@ public class Book {
         this.words = words;
     }
 
-    public String getComment_counts() {
-        return comment_counts;
-    }
-
-    public void setComment_counts(String comment_counts) {
-        this.comment_counts = comment_counts;
-    }
-
     public String getContent_detail() {
         return content_detail;
     }
@@ -236,5 +236,33 @@ public class Book {
 
     public void setImgs(String imgs) {
         this.imgs = imgs;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", skuid='" + skuid + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", m_price=" + m_price +
+                ", p_price=" + p_price +
+                ", type0='" + type0 + '\'' +
+                ", type1='" + type1 + '\'' +
+                ", descrtion='" + descrtion + '\'' +
+                ", language='" + language + '\'' +
+                ", edition='" + edition + '\'' +
+                ", bookPackage='" + bookPackage + '\'' +
+                ", format='" + format + '\'' +
+                ", publisher_time='" + publisher_time + '\'' +
+                ", paper='" + paper + '\'' +
+                ", page='" + page + '\'' +
+                ", words='" + words + '\'' +
+                ", comment_counts='" + comment_counts + '\'' +
+                ", content_detail='" + content_detail + '\'' +
+                ", imgs='" + imgs + '\'' +
+                '}';
     }
 }

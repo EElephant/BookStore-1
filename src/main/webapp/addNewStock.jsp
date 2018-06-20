@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 一贱你就笑
-  Date: 2018/6/10
-  Time: 0:04
+  Date: 2018/6/12
+  Time: 9:17
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,7 +11,7 @@
 
 <html>
 <head>
-    <title>库存管理</title>
+    <title>添加库存</title>
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -31,17 +31,15 @@
 <body>
 <%--导航栏--%>
 <s:include value="header.jsp"/>
-<%--内容--%>
-<h2>这是库存搜索</h2>
-<div class="row">
-    <div class="col-auto offset-4" style="position: relative;margin-bottom: auto;margin-top:10px;">
-        <s:form class="form-inline form-horizontal" action="queryStock">
-            <s:textfield class="form-control mr-sm-2" type="text" name="isbn" placeholder="Search" aria-label="Search"/>
-            <s:submit class="btn btn-outline-danger my-2 my-sm-0" type="submit" value="搜索"/>
-        </s:form>
-    </div>
+<div class="container-fluid">
+    <%--内容--%>
+    <s:form action="addStock" namespace="/" theme="bootstrap" method="POST">
+        <s:textfield name="isbn" label="书籍编号"/>
+        <s:textfield name="number" label="库存数量"/>
+        <s:submit label="提交"/>
+        <s:reset label="重置"/>
+    </s:form>
 </div>
-
 </body>
 <script src="js/jquery.min.js"></script>
 <script src="js/scripts.js"></script>

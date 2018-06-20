@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="bookStruts" namespace="/" extends="struts-default">
+
+        <action name="addBook" class="top.yimiaohome.action.AddBookAction" >
+            <result name="success">/index.jsp</result>
+            <result name="input">/addNewBook.jsp</result>
+        </action>
+
+        <action name="queryBook" class="top.yimiaohome.action.QueryBookAction" >
+            <result name="success">/showBook.jsp</result>
+            <result name="input">/querybook.jsp</result>
+        </action>
+
+        <action name="queryBookDetail" class="top.yimiaohome.action.QueryBookDetailAction" >
+            <result name="success">/showBookDetail.jsp</result>
+            <result name="input">/querybook.jsp</result>
+        </action>
+
+        <action name="deleteBook" class="top.yimiaohome.action.DeleteBookAction" >
+            <result name="success">/index.jsp</result>
+            <result name="input">/querybook.jsp</result>
+        </action>
+
+        <action name="updateBook" class="top.yimiaohome.action.UpdateBookAction" >
+            <result name="success">/index.jsp</result>
+            <result name="input">/querybook.jsp</result>
+        </action>
+
+    </package>
+</struts>
